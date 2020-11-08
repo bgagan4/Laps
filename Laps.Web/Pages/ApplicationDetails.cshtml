@@ -1,0 +1,69 @@
+﻿@page
+@model Laps.Web.Pages.ApplicationDetailsModel
+
+@{
+    ViewData["Title"] = "ApplicationDetails";
+}
+
+<h1>Loan Details</h1>
+
+<h4>Please provide a few details about your application</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ApplicationDetails.Purpose" class="control-label"></label>
+                <input asp-for="ApplicationDetails.Purpose" class="form-control" />
+                <span asp-validation-for="ApplicationDetails.Purpose" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationDetails.Age" class="control-label"></label>
+                <input asp-for="ApplicationDetails.Age" class="form-control" />
+                <span asp-validation-for="ApplicationDetails.Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationDetails.EmploymentType" class="control-label"></label>
+                <select asp-for="ApplicationDetails.EmploymentType" class="form-control" asp-items="Html.GetEnumSelectList<Laps.Web.Data.Models.EmployementType>()"></select>
+                <span asp-validation-for="ApplicationDetails.EmploymentType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationDetails.IncomePerMonth" class="control-label"></label>
+                <input asp-for="ApplicationDetails.IncomePerMonth" class="form-control" />
+                <span asp-validation-for="ApplicationDetails.IncomePerMonth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationDetails.Address" class="control-label"></label>
+                <input asp-for="ApplicationDetails.Address" class="form-control" />
+                <span asp-validation-for="ApplicationDetails.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationDetails.City" class="control-label"></label>
+                <input asp-for="ApplicationDetails.City" class="form-control" />
+                <span asp-validation-for="ApplicationDetails.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationDetails.Zip" class="control-label"></label>
+                <input asp-for="ApplicationDetails.Zip" class="form-control" />
+                <span asp-validation-for="ApplicationDetails.Zip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplicationDetails.MobileNumber" class="control-label"></label>
+                <input asp-for="ApplicationDetails.Zip" class="form-control" />
+                <span asp-validation-for="ApplicationDetails.MobileNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Go back</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

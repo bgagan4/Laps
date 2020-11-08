@@ -1,0 +1,28 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome to the "Loan" Team</h1>
+        <p>Loan at fingertips for all your needs.</p>
+        <p>
+            <a asp-page="Loans/Create">Apply Now!</a>
+        </p>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome to the "Loan" Team</h1>
+        @if (!User.IsInRole(Constants.LoanProcessorsRole) && !User.IsInRole(Constants.LoanManagersRole))
+        {
+            <a asp-page="Loans/Create">Apply Now</a>
+            <text> | </text>
+        }
+        <a asp-page="Loans/Index">View Applications</a>
+    </div>
+}

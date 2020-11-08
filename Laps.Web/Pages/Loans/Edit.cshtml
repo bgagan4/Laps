@@ -1,0 +1,75 @@
+﻿@page
+@model Laps.Web.Pages.Loans.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Application</h1>
+
+<h4>Loan Application</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LoanApplication.Id" />
+            @*<div class="form-group">
+                <label asp-for="LoanApplication.ExternalId" class="control-label"></label>
+                <input asp-for="LoanApplication.ExternalId" class="form-control" />
+                <span asp-validation-for="LoanApplication.ExternalId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="LoanApplication.Purpose" class="control-label"></label>
+                <input asp-for="LoanApplication.Purpose" class="form-control" />
+                <span asp-validation-for="LoanApplication.Purpose" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoanApplication.Age" class="control-label"></label>
+                <input asp-for="LoanApplication.Age" class="form-control" />
+                <span asp-validation-for="LoanApplication.Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoanApplication.EmploymentType" class="control-label"></label>
+                <select asp-for="LoanApplication.EmploymentType" asp-items="Html.GetEnumSelectList<EmployementType>()" class="form-control"></select>
+                <span asp-validation-for="LoanApplication.EmploymentType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoanApplication.IncomePerMonth" class="control-label"></label>
+                <input asp-for="LoanApplication.IncomePerMonth" class="form-control" />
+                <span asp-validation-for="LoanApplication.IncomePerMonth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoanApplication.Address" class="control-label"></label>
+                <input asp-for="LoanApplication.Address" class="form-control" />
+                <span asp-validation-for="LoanApplication.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoanApplication.Zip" class="control-label"></label>
+                <input asp-for="LoanApplication.Zip" class="form-control" />
+                <span asp-validation-for="LoanApplication.Zip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoanApplication.MobileNumber" class="control-label"></label>
+                <input asp-for="LoanApplication.MobileNumber" class="form-control" />
+                <span asp-validation-for="LoanApplication.MobileNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoanApplication.LoanAmount" class="control-label"></label>
+                <input asp-for="LoanApplication.LoanAmount" class="form-control" />
+                <span asp-validation-for="LoanApplication.LoanAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

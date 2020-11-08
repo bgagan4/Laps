@@ -1,0 +1,94 @@
+﻿@page
+@model Laps.Web.Pages.Loans.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Loan Applications</h1>
+
+@if (!User.IsInRole(Constants.LoanProcessorsRole) && !User.IsInRole(Constants.LoanManagersRole))
+{
+    <p>
+        <a asp-page="Create">Apply New</a>
+    </p>
+}
+else if (User.IsInRole(Constants.LoanManagersRole))
+{
+    <p>
+        <a asp-page="./Index" asp-route-showAll="True">View All</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.LoanApplications[0].ExternalId)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.LoanApplications[0].Purpose)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoanApplications[0].Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoanApplications[0].EmploymentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoanApplications[0].IncomePerMonth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoanApplications[0].LoanAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoanApplications[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoanApplications[0].ApplicationSubmittedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoanApplications[0].StatusLastUpdatedOn)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.LoanApplications)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ExternalId)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Purpose)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmploymentType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncomePerMonth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoanAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationSubmittedOn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusLastUpdatedOn)
+                </td>
+                <td>
+                    @*<a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |*@
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> @*|
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

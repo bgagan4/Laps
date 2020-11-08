@@ -1,0 +1,60 @@
+﻿@page
+@model Laps.Web.Pages.ApplicationsListModel
+
+@{
+    ViewData["Title"] = "ApplicationsList";
+}
+
+<h1>Your loan applications with us so far</h1>
+
+<p>
+    <a asp-page="./ApplicationDetails">Apply New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationDetails[0].Purpose)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationDetails[0].LoanAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationDetails[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationDetails[0].ApplicationSubmittedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationDetails[0].StatusLastUpdatedOn)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ApplicationDetails) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Purpose)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoanAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationSubmittedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusLastUpdatedOn)
+            </td>
+            @*<td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>

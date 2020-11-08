@@ -1,0 +1,158 @@
+﻿@page
+@model Laps.Web.Pages.Loans.ReviewModel
+@{
+    ViewData["Title"] = "Review";
+}
+
+<h1>Review Application</h1>
+
+<div class="container">
+    <hr />
+    <div class="row">
+        <div class="col-sm-8">
+            <dl class="row">
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.LoanApplication.ExternalId)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.LoanApplication.ExternalId)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.LoanApplication.Purpose)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.LoanApplication.Purpose)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.LoanApplication.Age)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.LoanApplication.Age)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.LoanApplication.EmploymentType)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.LoanApplication.EmploymentType)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.LoanApplication.IncomePerMonth)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.LoanApplication.IncomePerMonth)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.LoanApplication.Address)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.LoanApplication.Address)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.LoanApplication.Zip)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.LoanApplication.Zip)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.LoanApplication.MobileNumber)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.LoanApplication.MobileNumber)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.LoanApplication.LoanAmount)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.LoanApplication.LoanAmount)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.LoanApplication.Status)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.LoanApplication.Status)
+                </dd>
+                <dt class="col-sm-6">
+                    @Html.DisplayNameFor(model => model.LoanApplication.ApplicationSubmittedOn)
+                </dt>
+                <dd class="col-sm-6">
+                    @Html.DisplayFor(model => model.LoanApplication.ApplicationSubmittedOn)
+                </dd>
+            </dl>
+        </div>
+        <div class="col-sm-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="@Model.ApplicationReview.Id" />
+                <input type="hidden" asp-for="@Model.ApplicationReview.ApplicationId" />
+                <div class="form-group">
+                    <label asp-for="@Model.ApplicationReview.IsIncomeVerified" class="control-label"></label>
+                    <input asp-for="@Model.ApplicationReview.IsIncomeVerified" id="isIncomeVerified" onchange="canSubmit()" class="form-control" />
+                    <span asp-validation-for="@Model.ApplicationReview.IsIncomeVerified" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="@Model.ApplicationReview.IsCreditScoreVerified" class="control-label"></label>
+                    <input asp-for="@Model.ApplicationReview.IsCreditScoreVerified" id="isCreditScoreVerified" onchange="canSubmit()" class="form-control" />
+                    <span asp-validation-for="@Model.ApplicationReview.IsCreditScoreVerified" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-12 text-center btn-group">
+                            <input type="submit" asp-page-handler="Save" id="btnSave" value="Save" class="btn btn-primary mr-2" />
+                            <input type="submit" asp-page-handler="Approval" id="btnApproval" value="Send For Approval" disabled class="btn btn-success mr-2" />
+                            @if (User.IsInRole(Constants.LoanManagersRole))
+                            {
+                                <input type="submit" asp-page-handler="Approve" id="btnApprove" value="Approve" disabled class="btn btn-success mr-2" />
+                            }
+                            <input type="submit" asp-page-handler="Reject" id="btnReject" value="Reject" disabled class="btn btn-danger mr-2" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="container alert-success">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $(function () {
+            canSubmit();
+        });
+        function canSubmit() {
+            var chkIncomeVerified = document.getElementById("isIncomeVerified");
+            var chkCreditVerified = document.getElementById("isCreditScoreVerified");
+            var btnApproval = document.getElementById("btnApproval");
+            var btnApprove = document.getElementById("btnApprove");
+            var btnReject = document.getElementById("btnReject");
+            if (chkIncomeVerified.checked && chkCreditVerified.checked) {
+                btnApproval.removeAttribute('disabled');
+                if (btnApprove != null) {
+                    btnApprove.removeAttribute('disabled');
+                }
+            }
+            else {
+                btnApproval.setAttribute('disabled', 'disabled');
+                if (btnApprove != null) {
+                    btnApprove.setAttribute('disabled', 'disabled');
+                }
+            }
+            if (chkIncomeVerified.checked || chkCreditVerified.checked) {
+                btnReject.removeAttribute('disabled');
+            }
+            else {
+                btnReject.setAttribute('disabled', 'disabled');
+            }
+        }
+    </script>
+}
