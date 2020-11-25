@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Laps.Web.Data;
+using Laps.Web.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Laps.Web.Data;
-using Laps.Web.Data.Models;
+using System.Threading.Tasks;
 
 namespace Laps.Web.Pages.Loans
 {

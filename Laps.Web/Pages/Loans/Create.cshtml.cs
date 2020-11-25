@@ -59,8 +59,7 @@ namespace Laps.Web.Pages.Loans
 
 
             LoanApplication.ExternalId = Guid.NewGuid().ToString();
-            Context.LoanApplications.Add(LoanApplication);
-            await Context.SaveChangesAsync();
+            await Context.AddLoanApplicationAsync(LoanApplication);
 
             return RedirectToPage("./Index");
         }

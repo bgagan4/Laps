@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Laps.Web.Data.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Laps.Web.Data;
-using Laps.Web.Data.Models;
-using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Laps.Web.Pages
 {
@@ -21,7 +17,7 @@ namespace Laps.Web.Pages
             _context = context;
         }
 
-        public IList<LoanApplication> ApplicationDetails { get;set; }
+        public IList<LoanApplication> ApplicationDetails { get; set; }
 
         public async Task OnGetAsync()
         {

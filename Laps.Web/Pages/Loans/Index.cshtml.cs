@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
+﻿using Laps.Web.Authorization;
 using Laps.Web.Data;
 using Laps.Web.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Laps.Web.Authorization;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Laps.Web.Pages.Loans
 {
@@ -40,10 +37,9 @@ namespace Laps.Web.Pages.Loans
                 return;
             }
 
-            var currentUserId = UserManager.GetUserId(User);
-
             if (isCustomer)
             {
+                var currentUserId = UserManager.GetUserId(User);
                 loanApplications = loanApplications.Where(l => l.OwnerId == currentUserId);
             }
             else if (isProcessor)

@@ -10,9 +10,9 @@ using Laps.Web.Authorization;
 
 namespace Laps.Web.Pages.Loans
 {
-    public class Withdraw : DI_BasePageModel
+    public class WithdrawModel : DI_BasePageModel
     {
-        public Withdraw(
+        public WithdrawModel(
             ApplicationDbContext context,
             IAuthorizationService authorizationService,
             UserManager<IdentityUser> userManager)
