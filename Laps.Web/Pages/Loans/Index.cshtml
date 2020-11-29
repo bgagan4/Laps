@@ -22,9 +22,6 @@ else if (User.IsInRole(Constants.LoanManagersRole))
 <table class="table">
     <thead>
         <tr>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.LoanApplications[0].ExternalId)
-                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.LoanApplications[0].Purpose)
             </th>
@@ -56,9 +53,6 @@ else if (User.IsInRole(Constants.LoanManagersRole))
         @foreach (var item in Model.LoanApplications)
         {
             <tr>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.ExternalId)
-                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Purpose)
                 </td>
@@ -84,9 +78,7 @@ else if (User.IsInRole(Constants.LoanManagersRole))
                     @Html.DisplayFor(modelItem => item.StatusLastUpdatedOn)
                 </td>
                 <td>
-                    @*<a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |*@
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> @*|
-                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
                 </td>
             </tr>
         }
