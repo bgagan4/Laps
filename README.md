@@ -2,8 +2,8 @@
 
 This applicatoin is developed on the .NET technology stack (Razor Pages, EF Core, MS SQL Server)
 
-Software requirements:
-.NET Core 3.1
+**Software requirements:**
+.NET Core 3.1. [Download .NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1)
 
 ## How to Setup:
 Open cmd from the solution folder and run the command: **dotnet build**  
