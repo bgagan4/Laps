@@ -1,5 +1,4 @@
-﻿using Laps.Web.Data;
-using Laps.Web.Data.Models;
+﻿using Laps.Web.Data.Models;
 using Laps.Web.Pages.Loans;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -10,7 +9,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 using System.Collections.Generic;
 using System.Security.Claims;
