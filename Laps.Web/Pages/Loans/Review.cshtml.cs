@@ -57,6 +57,10 @@ namespace Laps.Web.Pages.Loans
             return Page();
         }
 
+        /// <summary>
+        /// On Approving a loan application
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> OnPostApprovalAsync()
         {
             if (!ModelState.IsValid)
@@ -74,6 +78,7 @@ namespace Laps.Web.Pages.Loans
                 return NotFound();
             }
 
+            //Check if the user approving the application belongs to Manager Role.
             var isAuthorized = await AuthorizationService.AuthorizeAsync(
                                                      User, loanApplication,
                                                      LoanOperations.SendForApproval);
@@ -81,14 +86,11 @@ namespace Laps.Web.Pages.Loans
             {
                 return Forbid();
             }
-            //var isIncomeChecked = loanApplication.IsIncomeVerified;
-            //var isCreditChecked = loanApplication.IsCreditScoreVerified;
 
             LoanApplication = loanApplication;
+            //Set the status and update the status last updated date.
             LoanApplication.Status = LoanStatus.AwaitingManagersApproval;
             LoanApplication.StatusLastUpdatedOn = DateTime.Now;
-            //LoanApplication.IsIncomeVerified = isIncomeChecked;
-            //LoanApplication.IsCreditScoreVerified = isCreditChecked;
             Context.Attach(LoanApplication).State = EntityState.Modified;
 
             if(ApplicationReview.Id == 0)
